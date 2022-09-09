@@ -1,13 +1,71 @@
-body {
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+* {
+  box-sizing: border-box;
+  padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+:root {
+  --main-color: #5275fb;
+  --c-dark: #292929;
+  --c-grey: #4d4d4d;
+  --c-light-grey: #a0a2a9;
+  --bg-color: #f5f7fb;
+  --bg-color-light: #ffffff;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: var(--bg-color);
+  padding-top: 75px;
+}
+
+/* Navbar */
+.container {
+  padding: 32px;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding-bottom: 0;
+  width: 100%;
+}
+
+.navbarListItems {
+  width: 100%;
+  height: 42px;
+  list-style: none;
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+}
+
+.navbarListItem,
+.navbarListItemActive {
+  color: var(--c-light-grey);
+  display: flex;
+  justify-content: end;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.navbarListItemActive {
+  color: var(--main-color);
+}
+
+.navbarListItemActive .icon {
+  fill: var(--main-color);
+}
+
+.navbarListItems li:first-child {
+  flex-grow: 0.6;
+}
+
+.navbarListItems li:first-child .navbarListItem {
+  justify-content: start;
 }
