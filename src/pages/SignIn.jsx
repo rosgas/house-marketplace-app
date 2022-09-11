@@ -1,5 +1,10 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
 import logo from "../assets/svg/logo-white.svg";
 import visibilityIcon from "../assets/svg/visibility.svg";
 
@@ -20,6 +25,25 @@ function SignIn() {
     }));
   };
 
+  const onSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const auth = getAuth();
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+      if (userCredential.user) {
+        navigate("/");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <div className="container card-container">
@@ -32,7 +56,7 @@ function SignIn() {
             <header>
               <p className="title">Wecome back</p>
             </header>
-            <form>
+            <form onSubmit={onSubmit}>
               <div className="form-group">
                 <input
                   type="email"
