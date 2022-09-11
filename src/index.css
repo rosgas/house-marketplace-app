@@ -8,17 +8,66 @@
 
 :root {
   --main-color: #5275fb;
+  --secondary-color: #ff005c;
   --c-dark: #292929;
+  --c-white: #ffffff;
   --c-grey: #4d4d4d;
   --c-light-grey: #a0a2a9;
+  --c-box-shadow: rgba(18, 40, 126, 0.45);
   --bg-color: #f5f7fb;
-  --bg-color-light: #ffffff;
+  --navbar-height: 42px;
 }
 
 body {
   font-family: "Poppins", sans-serif;
   background-color: var(--bg-color);
   padding-top: 75px;
+  color: var(--c-grey);
+}
+
+/* Utility classes */
+/* Buttons */
+.btn {
+  display: block;
+  width: fit-content;
+  border: none;
+  padding: 10px 24px;
+  margin-top: 42px;
+  color: var(--c-white);
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.2 ease-in-out;
+}
+
+.btn:hover {
+  opacity: 0.9;
+  transform: scale(1.01);
+}
+
+.btn-main {
+  background-color: var(--main-color);
+}
+
+/* Texts */
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--c-dark);
+}
+
+/* Links */
+
+.link {
+  text-decoration: none;
+  color: var(--main-color);
+  transition: 0.2s ease;
+}
+
+.link:hover {
+  border-bottom: 1px solid var(--main-color);
 }
 
 /* Navbar */
@@ -29,16 +78,12 @@ body {
 .navbar {
   position: fixed;
   top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  padding-bottom: 0;
   width: 100%;
 }
 
 .navbarListItems {
   width: 100%;
-  height: 42px;
+  height: var(--navbar-height);
   list-style: none;
   display: flex;
   align-items: end;
@@ -68,4 +113,136 @@ body {
 
 .navbarListItems li:first-child .navbarListItem {
   justify-content: start;
+}
+
+/* Sign in/Sign up page */
+.card-container {
+  height: calc(100vh - 32px - var(--navbar-height));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.card {
+  width: 60vw;
+  height: 70vh;
+  display: flex;
+  box-shadow: 0px 4px 16px var(--c-box-shadow);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.card-image {
+  position: relative;
+  width: 50%;
+  z-index: 2;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-image:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background: url("/src/assets/png/sign-in-bg.png") no-repeat center
+    center/cover;
+  filter: grayscale(100%);
+  z-index: -2;
+}
+
+.card-image:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background: #12287e;
+  opacity: 0.6;
+  z-index: -1;
+}
+
+img {
+  margin: auto;
+}
+
+.attribute {
+  color: var(--c-light-grey);
+  padding-bottom: 10px;
+}
+
+/* Form */
+.card-form {
+  position: relative;
+  width: 50%;
+  padding: 60px;
+  background-color: var(--c-white);
+}
+
+.form-group {
+  height: 50px;
+  position: relative;
+  width: 100%;
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+label {
+  font-weight: bold;
+  color: var(--c-grey);
+  transition: 0.2s ease;
+}
+
+input {
+  width: 100%;
+  border: none;
+  font-size: 16px;
+  color: var(--c-grey);
+  padding: 5px 0;
+  border-bottom: 1px solid var(--c-grey);
+  transition: 0.2s ease;
+}
+
+input:focus {
+  outline: none;
+  border-bottom: 1px solid var(--main-color);
+}
+
+input:focus + label {
+  color: var(--main-color);
+}
+
+.password-input input {
+  position: relative;
+}
+
+.show-password {
+  position: absolute;
+  bottom: 5px;
+  right: 0;
+  fill: var(--c-grey);
+  cursor: pointer;
+}
+
+/* Sign in page */
+
+.forgot-password-link {
+  font-size: 12px;
+  margin: 8px 0;
+  float: right;
+}
+
+.sign-up {
+  position: absolute;
+  bottom: 64px;
+  display: block;
+  width: calc(100% - 120px);
+  text-align: center;
 }
