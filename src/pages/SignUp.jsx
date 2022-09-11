@@ -1,5 +1,11 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
+import { db } from "../firebase.config";
 import logo from "../assets/svg/logo-white.svg";
 import visibilityIcon from "../assets/svg/visibility.svg";
 
@@ -21,6 +27,29 @@ function SignUp() {
     }));
   };
 
+  const onSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const auth = getAuth();
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+      const user = userCredential.user;
+
+      updateProfile(auth.currentUser, {
+        displayName: name,
+      });
+
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <div className="container card-container">
@@ -33,7 +62,7 @@ function SignUp() {
             <header>
               <p className="title">Join us</p>
             </header>
-            <form>
+            <form onSubmit={onSubmit}>
               <div className="form-group">
                 <input type="text" id="name" value={name} onChange={onChange} />
                 <label htmlFor="text">Name:</label>
