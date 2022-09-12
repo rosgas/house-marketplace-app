@@ -9,6 +9,7 @@
 :root {
   --main-color: #5275fb;
   --secondary-color: #ff005c;
+  --secondary-color-light: #ffd8e6;
   --c-dark: #292929;
   --c-white: #ffffff;
   --c-grey: #4d4d4d;
@@ -219,6 +220,17 @@ input:focus + label {
   color: var(--main-color);
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+
+input:-webkit-autofill {
+  -webkit-text-fill-color: var(--c-grey) !important;
+}
+
 .password-input input {
   position: relative;
 }
@@ -232,6 +244,49 @@ input:focus + label {
 }
 
 /* Sign in page */
+
+/* Error message */
+.error-box {
+  padding: 0 10px;
+  width: 100%;
+  background-color: var(--secondary-color-light);
+  border-radius: 4px;
+  color: var(--secondary-color);
+  visibility: hidden;
+  height: 0;
+  opacity: 0;
+  animation: show 0.1s ease-in-out forwards;
+}
+
+.error-box h1 {
+  font-size: 14px;
+}
+
+@keyframes show {
+  30% {
+    padding: 15px 10px;
+    height: fit-content;
+    margin-top: 0;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  60% {
+    padding: 15px 10px;
+    height: fit-content;
+    margin-top: 32px;
+    opacity: 0;
+    visibility: visible;
+  }
+
+  100% {
+    padding: 15px 10px;
+    height: fit-content;
+    margin-top: 32px;
+    opacity: 1;
+    visibility: visible;
+  }
+}
 
 .forgot-password-link {
   font-size: 12px;

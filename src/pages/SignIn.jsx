@@ -9,6 +9,7 @@ import logo from "../assets/svg/logo-white.svg";
 import visibilityIcon from "../assets/svg/visibility.svg";
 
 function SignIn() {
+  const [errorMessage, setErrorMessage] = useState("");
   const [showPassword, setShowPassword] = useState();
   const [formData, setFormData] = useState({
     email: "",
@@ -40,7 +41,7 @@ function SignIn() {
         navigate("/");
       }
     } catch (error) {
-      console.log(error);
+      setErrorMessage("Incorrect email address or password");
     }
   };
 
@@ -57,6 +58,11 @@ function SignIn() {
               <p className="title">Wecome back</p>
             </header>
             <form onSubmit={onSubmit}>
+              {errorMessage && (
+                <div className="error-box">
+                  <h1>{errorMessage}</h1>
+                </div>
+              )}
               <div className="form-group">
                 <input
                   type="email"
